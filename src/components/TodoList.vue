@@ -3,7 +3,7 @@
     <ul class="todolist">
       <li v-for="todo in state.todoList" :key="todo.ytodo">{{ todo.todo }}</li>
     </ul>
-    <Todoinput />
+    <Todoinput @add-todo="addTodoAction" />
   </div>
 </template>
 
@@ -16,17 +16,16 @@ export default defineComponent({
   name: 'TodoList',
 
   setup() {
-    const state = reactive<{ todoList: [{todo: String}, {todo: String}];}>({
-      todoList: [
-        {
-          todo: 'todo1',
-        },
-        {
-          todo: 'todo2'
-        }
-      ]
+
+    const state = reactive<{ todoList: Array<{todo: string}>;}>({
+      todoList: []
     });
-    return { state };
+
+    const addTodoAction = (value: string) => {
+      state.todoList.push({todo: value})
+    }
+
+    return { state, addTodoAction };
   }
 });
 </script>
