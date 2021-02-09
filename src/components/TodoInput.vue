@@ -1,5 +1,8 @@
 <template>
-  
+  <div>
+    <input type="text">
+    <button>登録</button>
+  </div>
 </template>
 
 <script lang="ts">
