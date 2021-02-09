@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input v-model="todoRef" type="text">
-    <button @click="add">登録</button>
+    <input v-model="todoRef" type="text" v-on:keydown.enter="add">
+    <button @click="add" >登録</button>
   </div>
 </template>
 
