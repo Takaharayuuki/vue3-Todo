@@ -3,15 +3,16 @@
     <ul class="todolist">
       <li v-for="(todo, index) in state.todoList" :key="todo.todo">
         {{ todo.todo }}
-        <complete-button :index="index" @complete-todo="completeTodoAction"></complete-button>
+        <complete-button :index="index"></complete-button>
       </li>
     </ul>
-    <TodoInput @add-todo="addTodoAction" />
+    <TodoInput />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
+import { useStore } from 'vuex'
 import TodoInput from '../components/TodoInput.vue';
 import CompleteButton from './CompleteButton.vue';
 
@@ -23,19 +24,21 @@ export default defineComponent({
   },
 
   setup() {
+    const store = useStore()
+
     const state = reactive<{ todoList: Array<{todo: string}>;}>({
-      todoList: []
+      todoList: store.state.todoList
     });
 
-    const addTodoAction = (value: string) => {
-      state.todoList.push({todo: value})
-    };
+    // const addTodoAction = (value: string) => {
+    //   state.todoList.push({todo: value})
+    // };
 
-    const completeTodoAction = (targetIndex) => {
-      state.todoList.splice(targetIndex, 1)
-    }
+    // const completeTodoAction = (targetIndex) => {
+    //   state.todoList.splice(targetIndex, 1)
+    // }
 
-    return { state, addTodoAction, completeTodoAction };
+    return { state };
   }
 });
 </script>
