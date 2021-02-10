@@ -1,25 +1,20 @@
 <template>
-  <div>
-    <ul class="todolist">
-      <li v-for="(todo, index) in state.todoList" :key="todo.todo">
-        {{ todo.todo }}
-        <complete-button :index="index"></complete-button>
-      </li>
-    </ul>
-    <TodoInput />
-  </div>
+  <ul class="todolist">
+    <li v-for="(todo, index) in state.todoList" :key="todo.todo">
+      {{ todo.todo }}
+      <complete-button :index="index"></complete-button>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { useStore } from 'vuex'
-import TodoInput from '../components/TodoInput.vue';
 import CompleteButton from './CompleteButton.vue';
 
 export default defineComponent({
   name: 'TodoList',
   components: {
-     TodoInput,
      CompleteButton
   },
 
@@ -42,7 +37,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style>
-
-</style>
