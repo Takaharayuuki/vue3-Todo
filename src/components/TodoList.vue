@@ -2,6 +2,7 @@
   <ul class="todolist">
     <li v-for="(todo, index) in state.todoList" :key="todo.todo">
       {{ todo.todo }}
+      <router-link :to="{name: 'detail', params: {id: todo.id}}">詳細</router-link>
       <complete-button :index="index"></complete-button>
     </li>
   </ul>
@@ -32,7 +33,6 @@ export default defineComponent({
     // const completeTodoAction = (targetIndex) => {
     //   state.todoList.splice(targetIndex, 1)
     // }
-
     return { state };
   }
 });
