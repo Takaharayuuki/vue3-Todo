@@ -1,25 +1,30 @@
 <template>
-  <button @click="completed">完了</button>
+  <button
+    class="bg-green-500 text-white font-semibold py-2 px-4 rounded"
+    @click="completed"
+  >
+    完了
+  </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from 'vue'
-import { useStore } from 'vuex'
+import { defineComponent, SetupContext } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
-  name: 'CompleteButton',
+  name: "CompleteButton",
   props: {
-    index: {type: Number}
+    index: { type: Number },
   },
 
   setup(props, context: SetupContext) {
-    const store = useStore()
-    const completed = (e) =>{
-      const targetIndex = props.index
-      store.commit('complete', targetIndex)
+    const store = useStore();
+    const completed = (e) => {
+      const targetIndex = props.index;
+      store.commit("complete", targetIndex);
     };
 
     return { completed, props };
-  }
+  },
 });
 </script>
